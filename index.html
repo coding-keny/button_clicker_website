@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Button Clicker</title>
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,89 +12,146 @@
             padding: 50px;
             background-color: #03f7ff;
         }
+
         .click_counter {
-            margin-top: 20px;
-            margin-left: -700px;
+            margin-left: 500px;
+            margin-top: 120px;
         }
+
         button {
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
             margin-right: 90px;
         }
+
         button:hover {
             transform: scale(1.05);
             transition: transform 0.3s;
         }
-        div.flexbox {
+
+        .flexbox {
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        div.shop {
+        .buy_click{
+            margin-left: 60px;
+        }
+        .shop {
             padding: 20px;
             border: 2px solid #000000;
             border-radius: 10px;
             background-color: #fff;
             display: inline-block;
-            height: 500px;
-            width: 400px;
+            height: 460px;
+            width: 360px;
+            margin-left: 150px;
             margin-top: -50px;
-            margin-right: -500px;
         }
+
         h1 {
             font-size: 36px;
-            margin-top: -300px;
+            margin-right: 350px;
+            margin-top: -250px;
         }
+
         p {
             font-size: 18px;
             margin-bottom: 150px;
             margin-left: -500px;
             margin-right: -90px;
         }
+
+        @media (max-width: 1260px) {
+            .flexbox {
+                text-align: center;
+                align-items: center;
+                justify-content: center;
+                display: flex;
+            }
+
+            body {
+                text-align: center;
+            }
+
+            button {
+                margin-left: 30px;
+            }
+
+            p {
+                margin-left: -50px
+            }
+
+            .click_counter {
+                margin-right: -50px;
+                margin-top: -100px;
+                white-space: nowrap;
+
+            }
+            h1{margin-right: -60px;}
+            .shop{right: 350px;}
+        }
     </style>
+
     <script>
-        let clickValue = 1; // Initial click value
+        let clickValue = 1;
         let clickCount = 0;
 
         function incrementClickCount(amount) {
             clickCount += amount;
-            document.getElementById("clickCount").innerText = "score: " + clickCount;
+
+            document.getElementById("clickCount").innerText =
+                "Score: " + clickCount;
         }
 
         function buyClick() {
             if (clickCount >= 10) {
                 clickCount -= 10;
-                clickValue += 1; // Increase click value by 1 for each purchase
-                document.getElementById("clickCount").innerText = "score: " + clickCount;
+                clickValue += 1;
+
+                document.getElementById("clickCount").innerText =
+                    "Score: " + clickCount;
+
+                document.getElementById("clickValueDisplay").innerText =
+                    "Clicks per click: " + clickValue;
             } else {
                 alert("Not enough points to buy a click!");
             }
         }
-        function updateClickValue() {
-            alert("You get " + clickValue + " clicks per click!");
-        }
     </script>
 </head>
+
 <body>
-    <div class = "flexbox">
-    <u>
-    <h1>Clicker Game</h1>
-    </u>
+    <div class="flexbox">
 
+        <div class="click_counter">
+            <p id="clickValueDisplay">
+                Clicks per click: 1
+            </p>
+        </div>
 
-    <p id="clickCount">score: 0</p>
-    <button onclick="incrementClickCount(clickValue)">Click me!</button>
-    <div class = "shop"><h2>
         <u>
-        welcome to the Clicker shop
+            <h1>Clicker Game</h1>
         </u>
-    </h2>
-    <button onclick="buyClick()">buy 1 click for 10 points</button>
-   </div>
-   <div class = "click_counter">
-   <button onclick="updateClickValue()">Click me to see how much click you get per click</button>
-   </div>
+
+        <p id="clickCount">Score: 0</p>
+
+        <button onclick="incrementClickCount(clickValue)">
+            Click Me!
+        </button>
+
+        <div class="shop">
+            <h2>
+                <u>Welcome to the Clicker Shop</u>
+            </h2>
+          <div class = "buy_click">
+            <button onclick="buyClick()">
+                Buy 1 click for 10 points
+            </button>
+          </div>
+        </div>
+
     </div>
 </body>
 </html>
