@@ -1,3 +1,9 @@
+<!--you need to add a color menu where there is diffrent buttons at the bottom
+and the button when clicked change the backgroud color and also make the fortune
+wheel thing you mad in the python clicker game the one that when clicked
+can ether add a random value to the clicks or subtract a random value to the clicks
+also if you have time can you add a achevments page where you can earn achivments
+-->>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -103,6 +109,12 @@
 
             document.getElementById("clickCount").innerText =
                 "Score: " + clickCount;
+            if (clickCount >= 10){
+                document.getElementById("button_id").style.backgroundColor = "white";
+            }
+            else{
+                document.getElementById("button_id").style.backgroundColor = "darkgrey";
+            }
         }
 
         function buyClick() {
@@ -117,6 +129,12 @@
                     "Clicks per click: " + clickValue;
             } else {
                 alert("Not enough points to buy a click!");
+            }
+            if (clickCount >= 10){
+                document.getElementById("button_id").style.backgroundColor = "white";
+            }
+            else{
+                document.getElementById("button_id").style.backgroundColor = "darkgrey";
             }
         }
     </script>
@@ -146,7 +164,7 @@
                 <u>Welcome to the Clicker Shop</u>
             </h2>
           <div class = "buy_click">
-            <button onclick="buyClick()">
+            <button onclick="buyClick()" id = "button_id">
                 Buy 1 click for 10 points
             </button>
           </div>
