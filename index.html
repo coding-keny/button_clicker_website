@@ -61,7 +61,10 @@ also if you have time can you add a achevments page where you can earn achivment
             margin-right: 350px;
             margin-top: -250px;
         }
-
+        .fortune_button{
+            margin-top: 300px;
+            margin-left: -200px;
+        }
         p {
             font-size: 18px;
             margin-bottom: 150px;
@@ -103,7 +106,6 @@ also if you have time can you add a achevments page where you can earn achivment
     <script>
         let clickValue = 1;
         let clickCount = 0;
-
         function incrementClickCount(amount) {
             clickCount += amount;
 
@@ -137,6 +139,22 @@ also if you have time can you add a achevments page where you can earn achivment
                 document.getElementById("button_id").style.backgroundColor = "darkgrey";
             }
         }
+    function random_num() {
+     let num = Math.floor(Math.random() * clickCount) + 1;
+     let sub_or_add = Math.floor(Math.random() * 3) + 1;
+
+     if (sub_or_add <= 2) {
+        clickCount = clickCount + num;
+        document.getElementById("fortune_id").style.backgroundColor = "green"
+     } else {
+        clickCount = clickCount - num;
+        document.getElementById("fortune_id").style.backgroundColor = "red"
+     }
+
+     document.getElementById("clickCount").innerText =
+        "Score: " + clickCount;
+   }
+
     </script>
 </head>
 
@@ -159,6 +177,10 @@ also if you have time can you add a achevments page where you can earn achivment
             Click Me!
         </button>
 
+        <div class = "fortune_button">
+          <button onclick ="random_num()" id = "fortune_id">fortune button</button>
+        </div>
+
         <div class="shop">
             <h2>
                 <u>Welcome to the Clicker Shop</u>
@@ -169,7 +191,6 @@ also if you have time can you add a achevments page where you can earn achivment
             </button>
           </div>
         </div>
-
     </div>
 </body>
 </html>
