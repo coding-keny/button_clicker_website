@@ -3,7 +3,7 @@ and the button when clicked change the backgroud color and also make the fortune
 wheel thing you mad in the python clicker game the one that when clicked
 can ether add a random value to the clicks or subtract a random value to the clicks
 also if you have time can you add a achevments page where you can earn achivments
--->>
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,7 +63,16 @@ also if you have time can you add a achevments page where you can earn achivment
         }
         .fortune_button{
             margin-top: 300px;
-            margin-left: -200px;
+            margin-left: -550px;
+            margin-right: 300px;
+            width: 140px;
+            height: 260px;
+            background-color: #fff;
+            text-align: left;
+            border: 2px solid #000000;
+            border-radius: 20px;
+            padding-left: 50px;
+            margin-bottom: -50px;
         }
         p {
             font-size: 18px;
@@ -71,7 +80,6 @@ also if you have time can you add a achevments page where you can earn achivment
             margin-left: -500px;
             margin-right: -90px;
         }
-
         @media (max-width: 1260px) {
             .flexbox {
                 text-align: center;
@@ -98,14 +106,22 @@ also if you have time can you add a achevments page where you can earn achivment
                 white-space: nowrap;
 
             }
+            .fortune_button{
+            margin-right: 0px;
+            margin-left: -200px;
+            text-align: center;
+            padding-left: 0px;}
             h1{margin-right: -60px;}
-            .shop{right: 350px;}
+            .shop{margin-right: 350px;}
         }
     </style>
 
     <script>
         let clickValue = 1;
         let clickCount = 0;
+        let bad_rolls = 0;
+        let good_rolls = 0;
+
         function incrementClickCount(amount) {
             clickCount += amount;
 
@@ -140,19 +156,38 @@ also if you have time can you add a achevments page where you can earn achivment
             }
         }
     function random_num() {
-     let num = Math.floor(Math.random() * clickCount) + 1;
+     let num = Math.floor(Math.random() * clickCount);
      let sub_or_add = Math.floor(Math.random() * 3) + 1;
-
-     if (sub_or_add <= 2) {
+     if (clickCount >= 2){
+     if (sub_or_add >= 2) {
         clickCount = clickCount + num;
+        good_rolls = good_rolls+1
         document.getElementById("fortune_id").style.backgroundColor = "green"
+        document.getElementById("good_rolls_id").innerText = "good rolls: " + good_rolls 
      } else {
         clickCount = clickCount - num;
+        bad_rolls = bad_rolls+1
         document.getElementById("fortune_id").style.backgroundColor = "red"
+        document.getElementById("bad_rolls_id").innerText = "bad rolls: " + bad_rolls
      }
 
      document.getElementById("clickCount").innerText =
         "Score: " + clickCount;
+   }
+   else{
+    good_rolls = good_rolls+1
+    document.getElementById("good_rolls_id").innerText = "good rolls: " + good_rolls 
+    clickCount+=1
+    document.getElementById("clickCount").innerText =
+    "Score: " + clickCount;
+    document.getElementById("fortune_id").style.backgroundColor = "green"
+   }
+    if (clickCount >= 10){
+     document.getElementById("button_id").style.backgroundColor = "white";
+    }
+    else{
+    document.getElementById("button_id").style.backgroundColor = "darkgrey";
+    }    
    }
 
     </script>
@@ -178,7 +213,12 @@ also if you have time can you add a achevments page where you can earn achivment
         </button>
 
         <div class = "fortune_button">
-          <button onclick ="random_num()" id = "fortune_id">fortune button</button>
+          <u>
+          <h2>rolling center</h2>
+          </u>
+          <h4 id = "good_rolls_id">good rolls: 0</h4>
+          <h4 id = "bad_rolls_id">bad rolls: 0</h4>
+          <button onclick ="random_num()" id = "fortune_id">rolling button</button>
         </div>
 
         <div class="shop">
