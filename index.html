@@ -1,0 +1,252 @@
+<!--you need to add a color menu where there is diffrent buttons at the bottom
+and the button when clicked change the backgroud color and also make the fortune
+wheel thing you mad in the python clicker game the one that when clicked
+can ether add a random value to the clicks or subtract a random value to the clicks
+also if you have time can you add a achevments page where you can earn achivments
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Clicker</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #03f7ff;
+        }
+        
+        .click_counter {
+            margin-left: 590px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-right: 90px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s;
+        }
+
+        .flexbox {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .buy_click{
+            margin-left: 60px;
+        }
+        .shop {
+            padding: 20px;
+            border: 2px solid #000000;
+            border-radius: 10px;
+            background-color: #fff;
+            display: inline-block;
+            height: 480px;
+            width: 360px;
+            margin-top: -10px;
+            margin-right: 350px;
+            flex-shrink: 0;
+        }
+        h1 {
+            font-size: 36px;
+            margin-left: 200px;
+            margin-top: -250px;
+            white-space: nowrap;
+        }
+        .fortune_button{
+            margin-top: 230px;
+            margin-left: -620px;
+            margin-right: 580px;
+            width: 140px;
+            height: 260px;
+            background-color: #fff;
+            text-align: left;
+            border: 2px solid #000000;
+            border-radius: 20px;
+            padding-left: 50px;
+            margin-bottom: -50px;
+        }
+        p {
+            margin-right: -90px;
+        }
+        .score_box{ margin-left: -150px;
+            text-align: left;
+        }
+
+        @media (max-width: 1260px) {
+            .flexbox {
+                text-align: center;
+                align-items: center;
+                justify-content: center;
+                display: flex;
+            }
+
+            body {
+                text-align: center;
+            }
+
+            button {
+                margin-left: auto;
+            }
+
+
+            .click_counter {
+                margin-right: -370px;
+                margin-top: -100px;
+                white-space: nowrap;
+
+            }
+            .fortune_button{
+            margin-right: 200px;
+            margin-left:  -200px;
+            text-align: center;
+            margin-bottom: -230px;
+            padding-left: 0px;}
+            h1{margin-left: 200px;
+            white-space: normal;}
+            .shop{margin-right: 0px;
+            width: 300px;}
+            .score_box{margin-left: -100px;}
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="flexbox">
+
+        <div class="click_counter">
+            <p id="clickValueDisplay">
+                Clicks per click: 1
+            </p>
+        </div>
+
+        <u>
+            <h1>Clicker Game</h1>
+        </u>
+       <div class="score_box">
+        <p id="clickCount">Score: 0</p>
+
+        <button onclick="incrementClickCount(clickValue)" id = "circle_button">
+            Click Me!
+        </button>
+       </div>
+
+        <div class = "fortune_button">
+          <u>
+          <h2>rolling center</h2>
+          </u>
+          <h4 id = "good_rolls_id">good rolls: 0</h4>
+          <h4 id = "bad_rolls_id">bad rolls: 0</h4>
+          <button onclick ="random_num()" id = "fortune_id">rolling button</button>
+        </div>
+
+
+        <div class="shop">
+            <h2>
+                <u>Welcome to the Clicker Shop</u>
+            </h2>
+
+          <div class = "buy_click">
+            <button onclick="buyClick()" id = "button_id">
+                Buy 1 click for 10 points
+            </button>
+          </div>
+        </div>
+    </div>
+</body>
+    <script>
+        let clickValue = 1;
+        let clickCount = 0;
+        let bad_rolls = 0;
+        let good_rolls = 0;
+        document.getElementById("button_id").style.backgroundColor = "darkgrey";
+        document.getElementById("circle_button").style.backgroundColor = "blue"
+        document.getElementById("circle_button").style.borderRadius = "100%"
+        document.getElementById("circle_button").style.paddingTop = "20px"
+        document.getElementById("circle_button").style.paddingBottom = "20px"
+        document.getElementById("circle_button").style.border = "3px solid black"
+        document.getElementById("bad_rolls_id").style.color = "red"
+        document.getElementById("good_rolls_id").style.color = "green"
+        document.getElementById("clickValueDisplay").style.marginLeft = "-300px"
+        document.getElementById("clickValueDisplay").style.marginTop = "-70px"
+        function incrementClickCount(amount) {
+            clickCount += amount;
+
+            document.getElementById("clickCount").innerText =
+                "Score: " + clickCount;
+            if (clickCount >= 10){
+                document.getElementById("button_id").style.backgroundColor = "white";
+            }
+            else{
+                document.getElementById("button_id").style.backgroundColor = "darkgrey";
+            }
+        }
+
+        function buyClick() {
+            if (clickCount >= 10) {
+                clickCount -= 10;
+                clickValue += 1;
+
+                document.getElementById("clickCount").innerText =
+                    "Score: " + clickCount;
+
+                document.getElementById("clickValueDisplay").innerText =
+                    "Clicks per click: " + clickValue;
+            } else {
+                alert("Not enough points to buy a click!");
+            }
+            if (clickCount >= 10){
+                document.getElementById("button_id").style.backgroundColor = "white";
+            }
+            else{
+                document.getElementById("button_id").style.backgroundColor = "darkgrey";
+            }
+        }
+    function random_num() {
+     let num = Math.floor(Math.random() * clickCount);
+     let sub_or_add = Math.floor(Math.random() * 3) + 1;
+     if (clickCount >= 2){
+     if (sub_or_add >= 2) {
+        clickCount = clickCount + num;
+        good_rolls = good_rolls+1
+        document.getElementById("fortune_id").style.backgroundColor = "green"
+        document.getElementById("good_rolls_id").innerText = "good rolls: " + good_rolls 
+     } else {
+        clickCount = clickCount - num;
+        bad_rolls = bad_rolls+1
+        document.getElementById("fortune_id").style.backgroundColor = "red"
+        document.getElementById("bad_rolls_id").innerText = "bad rolls: " + bad_rolls
+     }
+
+     document.getElementById("clickCount").innerText =
+        "Score: " + clickCount;
+   }
+   else{
+    good_rolls = good_rolls+1
+    document.getElementById("good_rolls_id").innerText = "good rolls: " + good_rolls 
+    clickCount+=1
+    document.getElementById("clickCount").innerText =
+    "Score: " + clickCount;
+    document.getElementById("fortune_id").style.backgroundColor = "green"
+   }
+    if (clickCount >= 10){
+     document.getElementById("button_id").style.backgroundColor = "white";
+    }
+    else{
+    document.getElementById("button_id").style.backgroundColor = "darkgrey";
+    }    
+   }
+
+    </script>
+</html>
