@@ -33,7 +33,7 @@ also if you have time can you add a achevments page where you can earn achivment
         }
 
         button:hover {
-            transform: scale(1.05);
+            transform: scale(1.15);
             transition: transform 0.3s;
         }
 
@@ -94,9 +94,10 @@ also if you have time can you add a achevments page where you can earn achivment
             body {
                 text-align: center;
             }
+            p{margin-left: 30px;}
 
             button {
-                margin-left: auto;
+                margin-left: 20px;
             }
 
 
@@ -107,7 +108,7 @@ also if you have time can you add a achevments page where you can earn achivment
 
             }
             .fortune_button{
-            margin-right: 200px;
+            margin-right: 180px;
             margin-left:  -200px;
             text-align: center;
             margin-bottom: -230px;
@@ -116,7 +117,7 @@ also if you have time can you add a achevments page where you can earn achivment
             white-space: normal;}
             .shop{margin-right: 0px;
             width: 300px;}
-            .score_box{margin-left: -100px;}
+            .score_box{margin-left: -130px;}
         }
     </style>
 
@@ -150,6 +151,7 @@ also if you have time can you add a achevments page where you can earn achivment
           <h4 id = "bad_rolls_id">bad rolls: 0</h4>
           <button onclick ="random_num()" id = "fortune_id">rolling button</button>
         </div>
+        <button id = "change_color" onclick="change_circle_color()">change circle color</button>
 
 
         <div class="shop">
@@ -170,8 +172,9 @@ also if you have time can you add a achevments page where you can earn achivment
         let clickCount = 0;
         let bad_rolls = 0;
         let good_rolls = 0;
+        let color = 0;
         document.getElementById("button_id").style.backgroundColor = "darkgrey";
-        document.getElementById("circle_button").style.backgroundColor = "blue"
+        document.getElementById("circle_button").style.backgroundColor = "red"
         document.getElementById("circle_button").style.borderRadius = "100%"
         document.getElementById("circle_button").style.paddingTop = "20px"
         document.getElementById("circle_button").style.paddingBottom = "20px"
@@ -180,6 +183,28 @@ also if you have time can you add a achevments page where you can earn achivment
         document.getElementById("good_rolls_id").style.color = "green"
         document.getElementById("clickValueDisplay").style.marginLeft = "-300px"
         document.getElementById("clickValueDisplay").style.marginTop = "-70px"
+        document.getElementById("change_color").style.marginLeft = "-180px"
+        document.getElementById("change_color").style.marginTop = "380px"
+        document.getElementById("change_color").style.borderRadius = "20px"
+        document.getElementById("change_color").style.backgroundColor = "orange"
+        document.getElementById("change_color").style.border = "2px solid black"
+        function change_circle_color(){
+        color = color + 1;
+        const colors = ["red", "orange", "yellow", "green","lightgreen", "lime", "cyan", "skyblue", "blue", "navy","purple", "violet",
+        "magenta","pink", "hotpink", "brown", "maroon", "gold", "silver", "gray", "black", "white", "coral", "salmon", "tomato",
+        "crimson", "indigo", "turquoise", "teal", "aquamarine", "olive", "darkgreen", "forestgreen", "lightblue", "deepskyblue",
+        "royalblue", "darkblue", "plum", "orchid", "lavender", "beige", "khaki", "chocolate", "tan", "wheat", "ivory", "mintcream",
+        "peachpuff", "seagreen", "slateblue"]; 
+        if (color < 49){
+        document.getElementById("change_color").style.backgroundColor = colors[color + 1]
+        document.getElementById("circle_button").style.backgroundColor = colors[color]
+        }
+        else{
+            document.getElementById("change_color").style.backgroundColor = "red"
+            document.getElementById("circle_button").style.backgroundColor = "slateblue"
+            color = -1
+        }
+        }    
         function incrementClickCount(amount) {
             clickCount += amount;
 
